@@ -20,7 +20,7 @@ int main()
 	testTicket2.ShowWorkTicket();
 
 
-	if (!testTicket1.SetWorkTicket(2, "MACDONALD-001", 10, 3, 2012, "User cannot locate \'any\' key.", false))
+	if (!testTicket1.SetWorkTicket(2, "MACDONALD-001", 10, 3, 2012, "User cannot locate \'any\' key.", true))
 		std::cout << "\nErrors! No changes to the ticket made." << std::endl;
 
 	std::cout << std::endl << "Ticket 1: " << testTicket1 << std::endl;
