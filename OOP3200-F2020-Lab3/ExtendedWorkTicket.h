@@ -20,44 +20,46 @@ class ExtendedWorkTicket : public WorkTicket {
 
 public:
 
-	// Default constructor
+	//Initializes all inherited attributes and sets isOpen attribute to true
 	ExtendedWorkTicket() : WorkTicket(), isOpen(true) {}
 
-	// Parameterized constructor
+	//Sets base class parameterized constructor's parameters and adds it's own parameter is_open
 	ExtendedWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string& description, bool is_open);
 
-	// Accessor to get isOpen value
+	//Gets the isOpen value
 	bool IsOpen() const;
 
-	// Mutator to close ticket
+	//Sets isOpen to false and closes the ticket
 	void CloseTicket();
 
-	// Calling base class SetWorkTicket + adding isOpen attribute
+	//Calls base class SetWorkTicket + adding isOpen attribute
 	bool SetWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string&
 		description, bool is_open);
 	
-	// Overriding base class ShowWorkTicket to display attributes + indicate if ticket is open
+	//Overrides base class ShowWorkTicket to display attributes + indicate if ticket is open
 	virtual void ShowWorkTicket() const override;
 
-	//Out stream operator
+	//Displays object's attributes 
 	friend ostream& operator<<(ostream& out, const ExtendedWorkTicket& ticket);
 
 
 private:
+
+	//Indicates whether the class is open or close
 	bool isOpen;
-
-
 };
 
+//Sets values to the parameterized constructor using the base class's attributes and isOpen
 inline ExtendedWorkTicket::ExtendedWorkTicket(int ticket_number, const std::string& client_id, int day, int month, int year, const std::string& description, bool is_open)
 	: WorkTicket(ticket_number, client_id, day, month, year, description), isOpen(std::move(is_open)) {}
 
-// Accessor to get isOpen value
+//Sets IsOpen
 inline bool ExtendedWorkTicket::IsOpen() const { return isOpen; }
 
-// Mutator to close ticket
+//Sets CloseTicket
 inline void  ExtendedWorkTicket::CloseTicket() { isOpen = false; }
 
+//Sets isOpen to user input and base class's attributes if a work ticket is valid else it returns false
 bool ExtendedWorkTicket::SetWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string& description, bool is_open)
 {
 	bool isValid = true;
@@ -76,7 +78,7 @@ bool ExtendedWorkTicket::SetWorkTicket(int ticket_number, const string& client_i
 
 }
 
-//Accessor to show work ticket contents
+//Displays work ticket contents by overriding show work ticket from the base class and adding messages based on the isOpen attribute
 void ExtendedWorkTicket::ShowWorkTicket() const
 {
 	WorkTicket::ShowWorkTicket();
@@ -91,7 +93,7 @@ void ExtendedWorkTicket::ShowWorkTicket() const
 	}
 }
 
-//
+//Displays work ticket contents by typecasting the object as a WorkTicket and adding messages based on the isOpen attribute 
 ostream& operator<<(ostream& out, const ExtendedWorkTicket& ticket)
 {
 	out << (WorkTicket)ticket;
