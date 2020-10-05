@@ -1,8 +1,13 @@
 
-
+/* Name: Fleur Blanckaert (100747083), Gabriel Dietrich (100764733)
+   Date: October 4th, 2020
+   Program: Lab 3 - Inheritance
+   Description: This file displays the default data created in WorkTicket and the
+				inherited class ExtendedWorkTicket
+*/
 #include <iostream>
 
-
+#include "ExtendedWorkTicket.h"
 
 int main()
 {

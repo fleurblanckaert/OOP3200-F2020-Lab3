@@ -1,53 +1,14 @@
-/* Name: Fleur Blanckaert (100747083), Gabriel Dietrich (100764733)
-   Date: October 4th, 2020
-   Program: Lab 3 - Inheritance
-   Description: A class that extends the WorkTicket class and
+/* Name: Fleur Blanckaert(100747083), Gabriel Dietrich(100764733)
+   Date : October 4th, 2020
+   Program : Lab 3 - Inheritance
+ * Description: A class that extends the WorkTicket class and
  *				indicates the status of the work ticket in terms of it
  *				being open or closed
  */
 
-#pragma once
+#include "ExtendedWorkTicket.h"
 
-#ifndef _EXTENDED_WORK_TICKET
-#define _EXTENDED_WORK_TICKET
-
-#include "WorkTicket.h"
-#include <string>
-
-
-class ExtendedWorkTicket : public WorkTicket {
-
-
-public:
-
-	// Default constructor
-	ExtendedWorkTicket() : WorkTicket(), myIsOpen(true) {}
-
-	// Parameterized constructor
-	ExtendedWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string& description, bool is_open);
-
-	// Accessor to get isOpen value
-	bool IsOpen() const;
-
-	// Mutator to close ticket
-	void CloseTicket();
-
-	// Calling base class SetWorkTicket + adding isOpen attribute
-	bool SetWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string&
-		description, bool is_open);
-	
-	// Overriding base class ShowWorkTicket to display attributes + indicate if ticket is open
-	virtual void ShowWorkTicket() const override;
-
-	//Out stream operator
-	friend ostream& operator<<(ostream& out, const ExtendedWorkTicket& ticket);
-
-
-private:
-	bool myIsOpen;
-
-
-};
+inline ExtendedWorkTicket::ExtendedWorkTicket() : WorkTicket(), myIsOpen(true) {}
 
 inline ExtendedWorkTicket::ExtendedWorkTicket(int ticket_number, const std::string& client_id, int day, int month, int year, const std::string& description, bool is_open)
 	: WorkTicket(ticket_number, client_id, day, month, year, description), myIsOpen(std::move(is_open)) {}
@@ -104,8 +65,7 @@ ostream& operator<<(ostream& out, const ExtendedWorkTicket& ticket)
 	{
 		out << "Ticket:        Close";
 	}
-	
+
 	return out;
 }
 
-#endif //__EXTENDED_WORK_TICKET
