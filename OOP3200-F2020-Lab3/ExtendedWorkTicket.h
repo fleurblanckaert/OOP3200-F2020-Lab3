@@ -21,7 +21,7 @@ class ExtendedWorkTicket : public WorkTicket {
 public:
 
 	// Default constructor
-	ExtendedWorkTicket() : WorkTicket(), myIsOpen(true) {}
+	ExtendedWorkTicket() : WorkTicket(), isOpen(true) {}
 
 	// Parameterized constructor
 	ExtendedWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string& description, bool is_open);
@@ -44,19 +44,19 @@ public:
 
 
 private:
-	bool myIsOpen;
+	bool isOpen;
 
 
 };
 
 inline ExtendedWorkTicket::ExtendedWorkTicket(int ticket_number, const std::string& client_id, int day, int month, int year, const std::string& description, bool is_open)
-	: WorkTicket(ticket_number, client_id, day, month, year, description), myIsOpen(std::move(is_open)) {}
+	: WorkTicket(ticket_number, client_id, day, month, year, description), isOpen(std::move(is_open)) {}
 
 // Accessor to get isOpen value
-inline bool ExtendedWorkTicket::IsOpen() const { return myIsOpen; }
+inline bool ExtendedWorkTicket::IsOpen() const { return isOpen; }
 
 // Mutator to close ticket
-inline void  ExtendedWorkTicket::CloseTicket() { myIsOpen = false; }
+inline void  ExtendedWorkTicket::CloseTicket() { isOpen = false; }
 
 bool ExtendedWorkTicket::SetWorkTicket(int ticket_number, const string& client_id, int day, int month, int year, const string& description, bool is_open)
 {
@@ -68,6 +68,7 @@ bool ExtendedWorkTicket::SetWorkTicket(int ticket_number, const string& client_i
 	}
 	else
 	{
+		isOpen = is_open;
 		isValid = true;
 	}
 
@@ -80,7 +81,7 @@ void ExtendedWorkTicket::ShowWorkTicket() const
 {
 	WorkTicket::ShowWorkTicket();
 
-	if (myIsOpen == true)
+	if (isOpen == true)
 	{
 		cout << "Ticket:        Open" << endl;
 	}
